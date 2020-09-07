@@ -2,12 +2,14 @@ import React from 'react';
 
 import GobalStyle from './styles/global';
 
+import Routes from './routes';
+
 function App() {
   return (
-    <div>
+    <>
       <GobalStyle />
-      <h1>Hello Tony!</h1>
-    </div>
+      <Routes />
+    </>
   );
 }
 
