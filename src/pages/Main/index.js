@@ -18,7 +18,7 @@ const Main = () => {
           <span>JUNTE A GALERA E VAMOS NESSA!</span>
         </InfoContainer>
         <ButtonContainer>
-          <Link to="/"> Vamos lá! </Link>
+          <Link to="/list-users"> Vamos lá! </Link>
         </ButtonContainer>
       </Content>
     </Container>

@@ -54,6 +54,7 @@ export const InfoContainer = styled.div`
     color: #737373;
     font-size: 1.8rem;
     margin: 2rem 5rem;
+    text-align: center;
   }
 
   span {
@@ -93,5 +94,9 @@ export const ButtonContainer = styled.div`
   @media (min-width: 1100px) {
     grid-area: buttons;
     margin-top: 0;
+
+    a {
+      width: 30rem;
+    }
   }
 `;
