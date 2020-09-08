@@ -13,7 +13,7 @@ const Main = () => {
           <h3>Que tal encontrar seus amigos?</h3>
           <p>
             Compatilhar seus projetos, desafios e novas ideias através do
-            Github?
+            Github.
           </p>
           <span>JUNTE A GALERA E VAMOS NESSA!</span>
         </InfoContainer>

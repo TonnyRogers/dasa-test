@@ -6,6 +6,7 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  flex: 1;
 
   background: #f2f2f2;
 `;
@@ -14,9 +15,6 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 1rem;
-
-  @media (min-width: 700px) {
-  }
 `;
 
 export const Filter = styled.div`
@@ -55,7 +53,26 @@ export const FilterContainer = styled.div`
 `;
 
 export const UserList = styled.ul`
+  display: flex;
+  flex-direction: column;
   margin-top: 1.8rem;
+  overflow-y: scroll;
+  height: 80vh;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 6px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.7);
+  }
+
   @media (min-width: 700px) {
     width: 70rem;
     align-self: center;

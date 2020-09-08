@@ -1,5 +1,6 @@
 import React from 'react';
 import { MdRoom, MdBusinessCenter } from 'react-icons/md';
+import { useHistory } from 'react-router-dom';
 
 import {
   Container,
@@ -12,23 +13,25 @@ import {
   Bio,
 } from './styles';
 
-const User = ({ name, username, location, profission, bio, avatar }) => {
+const User = ({ user }) => {
+  const history = useHistory();
+
   return (
-    <Container>
-      <Avatar src={avatar} />
+    <Container onClick={(e) => history.push(`/user/${user.username}`)}>
+      <Avatar src={user.avatar} />
       <UserInfo>
-        <Name> {`${name}(${username})`}</Name>
+        <Name> {`${user.name}(${user.username})`}</Name>
         <Details>
           <Location>
             <MdRoom color="#3D96FF" size={24} />
-            <p>{location}</p>
+            <p>{user.location}</p>
           </Location>
           <Profission>
             <MdBusinessCenter color="#3D96FF" size={24} />
-            <p>{profission}</p>
+            <p>{user.profission}</p>
           </Profission>
         </Details>
-        <Bio>{bio}</Bio>
+        <Bio>{user.bio}</Bio>
       </UserInfo>
     </Container>
   );
