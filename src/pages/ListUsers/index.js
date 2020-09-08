@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdSearch } from 'react-icons/md';
+
+import api from '../../services/api';
 
 import {
   Container,
@@ -8,75 +10,48 @@ import {
   UserList,
   Content,
   FilterButton,
+  EmptyUsers,
 } from './styles';
 
 import Header from '../../components/Header';
 import User from '../../components/User';
 
-const users = [
-  {
-    id: 1,
-    avatar: 'https://avatars3.githubusercontent.com/u/37991230?v=4',
-    name: 'Tony Amaral',
-    username: 'tonnyrogers',
-    location: 'Brazil',
-    profission: 'Autonomo',
-    bio: 'Oi eu sou o goku!',
-  },
-  {
-    id: 2,
-    avatar: 'https://avatars3.githubusercontent.com/u/37991230?v=4',
-    name: 'Tony Amaral',
-    username: 'tonnyrogers',
-    location: 'Brazil',
-    profission: 'Autonomo',
-    bio: 'Oi eu sou o goku!',
-  },
-  {
-    id: 3,
-    avatar: 'https://avatars3.githubusercontent.com/u/37991230?v=4',
-    name: 'Tony Amaral',
-    username: 'tonnyrogers',
-    location: 'Brazil',
-    profission: 'Autonomo',
-    bio: 'Oi eu sou o goku!',
-  },
-  {
-    id: 4,
-    avatar: 'https://avatars3.githubusercontent.com/u/37991230?v=4',
-    name: 'Tony Amaral',
-    username: 'tonnyrogers',
-    location: 'Brazil',
-    profission: 'Autonomo',
-    bio: 'Oi eu sou o goku!',
-  },
-  {
-    id: 5,
-    avatar: 'https://avatars3.githubusercontent.com/u/37991230?v=4',
-    name: 'Tony Amaral',
-    username: 'tonnyrogers',
-    location: 'Brazil',
-    profission: 'Autonomo',
-    bio: 'Oi eu sou o goku!',
-  },
-];
-
 const ListUsers = () => {
+  const [users, setUsers] = useState([]);
+  const [userName, setUserName] = useState('');
+
+  async function handleSearch(e) {
+    e.preventDefault();
+    const response = await api.get(`/search/users?q=${userName}`);
+    setUsers(response.data.items);
+  }
+
   return (
     <Container>
       <Header toRoute="/" pageTitle="Buscar usuários" />
       <Content>
-        <Filter>
+        <Filter onSubmit={(e) => handleSearch(e)}>
           <FilterContainer>
             <MdSearch color="#757575" size={24} />
-            <input type="text" name="filter" placeholder="Digite um nome..." />
+            <input
+              type="text"
+              name="filter"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              placeholder="Digite um nome..."
+            />
           </FilterContainer>
-          <FilterButton>Filtrar</FilterButton>
+          <FilterButton type="submit">Filtrar</FilterButton>
         </Filter>
         <UserList>
-          {users.map((user) => (
-            <User key={user.id} user={user} />
-          ))}
+          {users[0] ? (
+            users.map((user) => <User key={user.id} user={user} />)
+          ) : (
+            <EmptyUsers>
+              <h4>Sem usuários?</h4>
+              <span>Pesquise no filtro acima!</span>
+            </EmptyUsers>
+          )}
         </UserList>
       </Content>
     </Container>

@@ -7,7 +7,7 @@ export const Container = styled.li`
   padding: 1.5rem 1rem;
   border-radius: 1rem;
   margin: 1rem 0;
-  cursor: pointer;
+
   transition: all 0.2s;
 
   &:hover {
@@ -20,6 +20,7 @@ export const Avatar = styled.img`
   width: 9rem;
   margin-right: 0.8rem;
   border-radius: 1rem;
+  cursor: pointer;
 `;
 
 export const UserInfo = styled.div``;
@@ -39,9 +40,10 @@ export const Location = styled.div`
   display: flex;
   align-items: center;
 
-  p {
+  a {
     font-size: 1.6rem;
     color: #828282;
+    cursor: pointer;
   }
 `;
 
@@ -49,9 +51,10 @@ export const Profission = styled.div`
   display: flex;
   align-items: center;
 
-  p {
+  a {
     font-size: 1.6rem;
     color: #828282;
+    cursor: pointer;
   }
 `;
 

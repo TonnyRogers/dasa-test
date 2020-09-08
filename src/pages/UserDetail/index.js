@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdRoom, MdBusinessCenter } from 'react-icons/md';
+import { useParams } from 'react-router-dom';
+
+import api from '../../services/api';
 
 import {
   Container,
@@ -21,26 +24,38 @@ import {
 } from './styles';
 import Header from '../../components/Header';
 
-const user = {
-  id: 1,
-  avatar: 'https://avatars3.githubusercontent.com/u/37991230?v=4',
-  name: 'Tony Amaral',
-  username: 'tonnyrogers',
-  location: 'Brazil',
-  profission: 'Autonomo',
-  bio: 'Oi eu sou o goku!',
-};
-
 const UserDetail = () => {
+  const { username } = useParams();
+  const [user, setUser] = useState([]);
+  const [repositories, setRepositories] = useState([]);
+
+  useEffect(() => {
+    async function getUserRepos() {
+      const response = await api.get(`/users/${username}/repos`);
+
+      setRepositories(response.data);
+    }
+
+    async function getUserDetails() {
+      const response = await api.get(`/users/${username}`);
+
+      setUser(response.data);
+
+      getUserRepos();
+    }
+
+    getUserDetails();
+  }, []);
+
   return (
     <Container>
       <Header toRoute="/list-users" pageTitle="Detalhes do Usuário" />
       <Content>
         <User>
-          <Avatar src={user.avatar} />
+          <Avatar src={user.avatar_url} />
           <UserInfo>
             <Name>
-              {user.name}({user.username})
+              {user.name}({user.login})
             </Name>
             <Details>
               <Location>
@@ -49,7 +64,7 @@ const UserDetail = () => {
               </Location>
               <Profission>
                 <MdBusinessCenter color="#3D96FF" size={24} />
-                <p>{user.profission}</p>
+                <p>{user.company}</p>
               </Profission>
             </Details>
             <Bio>{user.bio}</Bio>
@@ -58,48 +73,12 @@ const UserDetail = () => {
         <Repositories>
           <Title>Repositórios</Title>
           <RepoList>
-            <Repo>
-              <RepoName>Localweb</RepoName>
-              <RepoDescription>
-                Projeto bem interessante venha participar
-              </RepoDescription>
-            </Repo>
-            <Repo>
-              <RepoName>Localweb</RepoName>
-              <RepoDescription>
-                Projeto bem interessante venha participar
-              </RepoDescription>
-            </Repo>
-            <Repo>
-              <RepoName>Localweb</RepoName>
-              <RepoDescription>
-                Projeto bem interessante venha participar
-              </RepoDescription>
-            </Repo>
-            <Repo>
-              <RepoName>Localweb</RepoName>
-              <RepoDescription>
-                Projeto bem interessante venha participar
-              </RepoDescription>
-            </Repo>
-            <Repo>
-              <RepoName>Localweb</RepoName>
-              <RepoDescription>
-                Projeto bem interessante venha participar
-              </RepoDescription>
-            </Repo>
-            <Repo>
-              <RepoName>Localweb</RepoName>
-              <RepoDescription>
-                Projeto bem interessante venha participar
-              </RepoDescription>
-            </Repo>
-            <Repo>
-              <RepoName>Localweb</RepoName>
-              <RepoDescription>
-                Projeto bem interessante venha participar
-              </RepoDescription>
-            </Repo>
+            {repositories.map((repo) => (
+              <Repo>
+                <RepoName>{repo.name}</RepoName>
+                <RepoDescription>{repo.description}</RepoDescription>
+              </Repo>
+            ))}
           </RepoList>
         </Repositories>
       </Content>

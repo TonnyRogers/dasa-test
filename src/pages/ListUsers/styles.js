@@ -17,7 +17,7 @@ export const Content = styled.div`
   margin: 0 1rem;
 `;
 
-export const Filter = styled.div`
+export const Filter = styled.form`
   @media (min-width: 700px) {
     display: flex;
     justify-content: space-between;
@@ -100,5 +100,28 @@ export const FilterButton = styled.button`
     &:hover {
       background-color: #0670ec;
     }
+  }
+`;
+
+export const EmptyUsers = styled.div`
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 4rem 1rem;
+  border-radius: 1rem;
+  margin: 1rem 0;
+
+  h4 {
+    font-size: 1.8rem;
+    color: #737373;
+  }
+
+  span {
+    font-size: 1.6rem;
+    color: #737373;
   }
 `;

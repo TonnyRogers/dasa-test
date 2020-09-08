@@ -5,6 +5,11 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+
+  @media (min-width: 700px) {
+    width: 70rem;
+    align-self: center;
+  }
 `;
 
 export const BackButton = styled(Link)`
