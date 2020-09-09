@@ -29,5 +29,5 @@ This project was made with:
 - React Testing Library (tests with jest)
 - Prop Types (component props validation)
 - ESLint + Prettier
-- React App Rewired (Webpack shortdhand)
+- React App Rewired (Webpack shorthand)
 
