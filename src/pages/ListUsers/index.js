@@ -28,7 +28,11 @@ const ListUsers = () => {
 
   return (
     <Container>
-      <Header toRoute="/" pageTitle="Buscar usuários" />
+      <Header
+        toRoute="/"
+        pageTitle="Buscar usuários"
+        testId="back-main-button"
+      />
       <Content>
         <Filter onSubmit={(e) => handleSearch(e)}>
           <FilterContainer>
@@ -39,9 +43,12 @@ const ListUsers = () => {
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
               placeholder="Digite um nome..."
+              data-testid="users-list-input"
             />
           </FilterContainer>
-          <FilterButton type="submit">Filtrar</FilterButton>
+          <FilterButton type="submit" data-testid="users-list-filter-button">
+            Filtrar
+          </FilterButton>
         </Filter>
         <UserList>
           {users[0] ? (

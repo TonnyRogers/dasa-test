@@ -1,6 +1,7 @@
 import React from 'react';
-import { MdRoom, MdBusinessCenter, MdStar } from 'react-icons/md';
-import { useHistory, Link } from 'react-router-dom';
+import { MdBusinessCenter, MdStar } from 'react-icons/md';
+import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import {
   Container,
@@ -10,7 +11,6 @@ import {
   Details,
   Location,
   Profission,
-  Bio,
 } from './styles';
 
 const User = ({ user }) => {
@@ -20,28 +20,38 @@ const User = ({ user }) => {
     <Container>
       <Avatar
         src={user.avatar_url}
-        onClick={(e) => history.push(`/user/${user.login}`)}
+        onClick={() => history.push(`/user/${user.login}`)}
       />
       <UserInfo>
         <Name> {`${user.login}`}</Name>
         <Details>
           <Location>
             <MdStar color="#3D96FF" size={24} />
-            <a href={user.starred_url} target="_blank">
+            <a href={user.starred_url} target="_blank" rel="noreferrer">
               Repos Favoritos
             </a>
           </Location>
           <Profission>
             <MdBusinessCenter color="#3D96FF" size={24} />
-            <a href={user.organizations_url} target="_blank">
+            <a href={user.organizations_url} target="_blank" rel="noreferrer">
               Organização
             </a>
           </Profission>
         </Details>
-        <Bio>{user.bio}</Bio>
       </UserInfo>
     </Container>
   );
 };
+
+User.propTypes = {
+  user: PropTypes.shape({
+    avatar_url: PropTypes.string.isRequired,
+    login: PropTypes.string.isRequired,
+    starred_url: PropTypes.string.isRequired,
+    organizations_url: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+User.defaultProps = {};
 
 export default User;

@@ -52,7 +52,7 @@ const UserDetail = () => {
       <Header toRoute="/list-users" pageTitle="Detalhes do Usuário" />
       <Content>
         <User>
-          <Avatar src={user.avatar_url} />
+          <Avatar src={user.avatar_url || ''} />
           <UserInfo>
             <Name>
               {user.name}({user.login})
@@ -74,7 +74,7 @@ const UserDetail = () => {
           <Title>Repositórios</Title>
           <RepoList>
             {repositories.map((repo) => (
-              <Repo>
+              <Repo key={repo.id}>
                 <RepoName>{repo.name}</RepoName>
                 <RepoDescription>{repo.description}</RepoDescription>
               </Repo>

@@ -18,7 +18,10 @@ const Main = () => {
           <span>JUNTE A GALERA E VAMOS NESSA!</span>
         </InfoContainer>
         <ButtonContainer>
-          <Link to="/list-users"> Vamos lá! </Link>
+          <Link to="/list-users" data-testid="users-list-button">
+            {' '}
+            Vamos lá!{' '}
+          </Link>
         </ButtonContainer>
       </Content>
     </Container>
